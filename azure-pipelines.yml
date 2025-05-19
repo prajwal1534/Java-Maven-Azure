@@ -8,7 +8,7 @@ steps:
   - task: Maven@3
     inputs:
       mavenPomFile: 'pom.xml'
-      goals: 'clean package -Dmaven.test.failure.ignore=true'
+      goals: 'clean verify'  # ✅ Run tests and fail on error
       javaHomeOption: 'JDKVersion'
       jdkVersionOption: '1.21'
       mavenVersionOption: 'Default'
