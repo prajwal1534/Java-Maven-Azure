@@ -2,29 +2,29 @@ trigger:
   - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: "ubuntu-latest"
 
 steps:
   - task: Maven@3
     inputs:
-      mavenPomFile: 'pom.xml'
-      goals: 'clean verify'  # ✅ Run tests and fail on error
-      javaHomeOption: 'JDKVersion'
-      jdkVersionOption: '1.21'
-      mavenVersionOption: 'Default'
+      mavenPomFile: "pom.xml"
+      goals: "clean verify"
+      javaHomeOption: "JDKVersion"
+      jdkVersionOption: "1.21"
+      mavenVersionOption: "Default"
       publishJUnitResults: true
-      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      testResultsFiles: "**/surefire-reports/TEST-*.xml"
 
-  # 📦 Copy the built JAR to the artifact staging directory
+  #Copy the built JAR to the artifact staging directory
   - task: CopyFiles@2
     inputs:
-      SourceFolder: '$(System.DefaultWorkingDirectory)/target'
-      Contents: '*.jar'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      SourceFolder: "$(System.DefaultWorkingDirectory)/target"
+      Contents: "*.jar"
+      TargetFolder: "$(Build.ArtifactStagingDirectory)"
 
-  # 🚀 Publish the artifact
+  #Publish the artifact
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      ArtifactName: 'drop'
-      publishLocation: 'Container'
+      PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+      ArtifactName: "drop"
+      publishLocation: "Container"
