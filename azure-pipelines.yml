@@ -1,8 +1,10 @@
 trigger:
   - master
 
+#JSUT REMOVE THE {vmImage: "ubuntu-latest"} AND THE COMMENT ON THE NEXT LINE IF YOU'RE RUNNING A LOCAL AGENT AND
 pool:
-  vmImage: "ubuntu-latest"
+  vmImage: "ubuntu-latest" # IF YOUR FORM WAS ACCEPTED
+  #name : 'Default'  # IF YOU'RE RUNNING A LOCAL AGENT
 
 steps:
   - task: Maven@3
